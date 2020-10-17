@@ -151,7 +151,7 @@ function draw() {
 stroke("white");
 textSize(20);  
 fill("white");
-text("Masks collected= " + score, 600, displayHeight/2)
+text("Masks collected= " + score, displayWidth - 200, displayHeight/6)
 }
 
 function Mask1() {
@@ -200,10 +200,14 @@ function level1() {
     brick1= createSprite(displayWidth/2, 100, 30, 10)
     brick1.addImage(brick1Image);
     brick1.scale= 1;
-    mask1Group.velocityY = 0;
-    mask2Group.velocityY = 0;
+    mask1Group.destroyEach();
+    mask2Group.destroyEach();
+    coronaGroup.destroyEach();
     saviour.velocityX = 0;
-    text("YOU CREATED 10 BRICKS. CREATE 15 MORE TO MAKE A HOUSE", 600, displayHeight/2)
+    stroke("white");
+    textSize(20);  
+    //fill("white");    
+    text("YOU CREATED 10 BRICKS. CREATE 15 MORE TO MAKE A HOUSE", 400, displayHeight/2)
   //  brick1Group.add(brick1);
   }
 }
