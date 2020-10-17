@@ -12,6 +12,7 @@ var mask2, mask2Image, mask2Group;
 var score;
 var brick1, brick1Image/*, brick1Group*/;
 var brick2, brick2Image;
+var bg, bgImage;
 var gameState= 0;
 var bricks1 = [];
 
@@ -19,8 +20,9 @@ function preload() {
 saviourImage= loadImage("ppe.png");
 mask1Image= loadImage("mask.png");
 mask2Image= loadImage("mask2.png");
-coronaImage= loadImage("obstacle.png")
-brick1Image= loadImage("BRICK.jpg")
+coronaImage= loadImage("obstacle.png");
+brick1Image= loadImage("BRICK.jpg");
+bgImage= loadImage("bg.png");
 //brick2Image= loadImage("level2BrickOp.png")
 }
 
@@ -29,6 +31,10 @@ function setup() {
   engine = Engine.create();
     world = engine.world;
 
+    bg = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
+    bg.addImage(bgImage);
+    bg.scale= 0.7;
+
     mask1Group = new Group();
     mask2Group = new Group();
     coronaGroup = new Group();
@@ -36,7 +42,7 @@ function setup() {
 
     score = 0;
 
-  saviour= createSprite(displayWidth/2,650,50,50)
+  saviour= createSprite(displayWidth/2,800,50,50)
   saviour.scale = 0.75
  saviour.addImage(saviourImage);
 
@@ -150,7 +156,7 @@ text("Masks collected= " + score, 600, displayHeight/2)
 
 function Mask1() {
   if (frameCount%200===0) {
-    mask1 = createSprite(random(0,displayWidth - 100), random(100, saviour.y - 20), 20,20)
+    mask1 = createSprite(random(100,displayWidth - 100), random(100, saviour.y - 20), 20,20)
     mask1.addImage(mask1Image);
     mask1.velocityX = 0;
     mask1.velocityY = random(1,3)
@@ -164,7 +170,7 @@ function Mask1() {
 
 function Mask2() {
   if (frameCount%300===0) {
-    mask2 = createSprite(random(0, displayWidth - 100), random(50, saviour.y - 200), 20,20)
+    mask2 = createSprite(random(100, displayWidth - 100), random(50, saviour.y - 200), 20,20)
     mask2.addImage(mask2Image);
     mask2.velocityX = 0;
     mask2.velocityY = random(1,3)
@@ -178,7 +184,7 @@ function Mask2() {
 
 function covid() {
   if(frameCount%120===0) {
-    corona = createSprite(random(0,displayWidth - 100), random(0, displayHeight - 300), 10);
+    corona = createSprite(random(100,displayWidth - 100), random(0, displayHeight - 300), 10);
     corona.velocityY = 2
     corona.shapeColor = "white"
     corona.addImage("covid", coronaImage)
